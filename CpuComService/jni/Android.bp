@@ -1,0 +1,26 @@
+// COPYRIGHT (C) 2018 MITSUBISHI ELECTRIC CORPORATION
+// ALL RIGHTS RESERVED
+
+cc_library_shared {
+    name: "libcpu_com_service_jni",
+    host_supported: true,
+    product_specific: true,
+
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+
+    shared_libs: [
+        "libcpucomv2",
+        "libmelcocommon",
+    ],
+
+    header_libs: [
+        "jni_headers",
+    ],
+
+    srcs : [
+        "cpu_com_service_jni.cpp",
+    ],
+}

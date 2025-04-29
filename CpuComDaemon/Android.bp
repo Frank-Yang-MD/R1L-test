@@ -1,0 +1,166 @@
+// COPYRIGHT (C) 2018 MITSUBISHI ELECTRIC CORPORATION
+// ALL RIGHTS RESERVED
+
+DAEMON_NAME = "cpucomdaemon"
+PERM_NAME = DAEMON_NAME + "-perm"
+HEADER_LIB_NAME = DAEMON_NAME + "_headers"
+
+cc_library_headers {
+    name: HEADER_LIB_NAME,
+    device_specific: true,
+
+    export_include_dirs: [
+        "src",
+        "src/vcpu",
+        "src/configure",
+        "src/message",
+        "src/wrapper",
+        "src/vcpu/device",
+        "src/vcpu/device/socket",
+        "src/vcpu/protocol",
+    ],
+}
+
+filegroup {
+    name: "cpucomdaemon_protocol_srcs",
+    srcs: [
+        "src/vcpu/CPU.cpp",
+        "src/vcpu/CPUCommon.cpp",
+        "src/vcpu/protocol/Protocol.cpp",
+        "src/configure/UARTDevice.cpp",
+        "src/configure/EmulatorSocketDevice.cpp",
+        "src/wrapper/MutexWrapper.cpp",
+        "src/DeviceConfigurations.cpp",
+        "src/vcpu/device/socket/MasterDevice.cpp",
+        "src/CpuComDaemonLog.cpp",
+    ],
+}
+
+cc_binary {
+    name: DAEMON_NAME,
+    device_specific: true,
+    init_rc: [DAEMON_NAME + ".rc"],
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+
+    shared_libs: [
+        "libcutils",
+        "libmelcocommonnet",
+        "liblogdogcommon",
+        "libcpucominternal",
+        "libvehiclepwr",
+    ],
+
+    header_libs: [
+        HEADER_LIB_NAME,
+    ],
+
+    srcs: [
+        "src/**/*.cpp",
+    ],
+
+    exclude_srcs: [
+        "src/vcpu/device/socket/MasterDevice.cpp",
+    ],
+
+    required: [PERM_NAME],
+}
+
+prebuilt_etc {
+    name: PERM_NAME,
+//    device_specific: true,
+    src: "permissions/" + DAEMON_NAME + ".xml",
+    sub_dir: "permissions",
+    filename_from_src: true,
+}
+
+cc_defaults {
+    name: "cpucomdaemon-tests-defaults",
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+
+    static_libs: [
+        "libgtest",
+        "libgmock",
+    ],
+
+    shared_libs: [
+        "libcutils",
+        "libmelcocommon",
+        "liblogdogcommon",
+        "libmelcocommonnet",
+        "libcpucominternal",
+        "libvehiclepwr",
+    ],
+
+    header_libs: [
+        "liblog_headers",
+    ],
+
+    local_include_dirs: [
+        "src",
+        "src/configure",
+        "src/message",
+        "src/wrapper",
+        "src/vcpu",
+        "src/vcpu/device",
+        "src/vcpu/protocol",
+        "test/configure",
+        "test/message",
+        "test/wrapper",
+        "test/vcpu",
+        "test/vcpu/protocol",
+    ],
+
+    srcs: [
+        "test/**/*.cpp",
+        "src/**/*.cpp",
+    ],
+
+    exclude_srcs: [
+        "src/main.cpp",
+        "src/vcpu/device/socket/MasterDevice.cpp",
+        "src/vcpu/device/socket/SlaveDevice.cpp",
+    ],
+
+}
+
+cc_test_host {
+    name: "cpucomdaemon-tests",
+    defaults: ["cpucomdaemon-tests-defaults"],
+}
+
+cc_test_host {
+    name: "cpucomdaemon-tests-coverage",
+    defaults: ["cpucomdaemon-tests-defaults"],
+    cflags: ["-fprofile-arcs", "-ftest-coverage", "-g", "-O0"],
+    ldflags: ["-coverage"],
+    static_libs: ["libprofile_rt"],
+}
+
+cc_binary_host {
+    name: "cpucomdaemon_csv_generator",
+
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+    ],
+
+    shared_libs: [
+        "liblogdogcommon",
+    ],
+
+    local_include_dirs: [
+        "src",
+    ],
+
+    srcs: [
+        "tools/cpucomdaemon_csv_generator.cpp",
+        "src/CpuComDaemonLog.cpp"
+    ],
+}

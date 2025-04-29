@@ -1,0 +1,24 @@
+// COPYRIGHT (C) 2018 MITSUBISHI ELECTRIC CORPORATION
+// ALL RIGHTS RESERVED
+
+cc_library_shared {
+    name: "libcpucominternal",
+    product_specific: true,
+    vendor_available: true,
+    host_supported: true,
+
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+
+    shared_libs: [
+        "libmelcocommon",
+    ],
+
+    srcs : [
+        "src/Repeater.cpp",
+    ],
+
+    export_include_dirs: ["include"],
+}

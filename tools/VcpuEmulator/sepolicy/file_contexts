@@ -1,0 +1,4 @@
+/dev/socket/emulator                u:object_r:vcpuemulator_socket:s0
+/dev/socket/emulatorcli             u:object_r:emulatorcli_socket:s0
+/(odm|vendor/odm)/bin/vcpuemulator  u:object_r:vcpuemulator_exec:s0
+/(odm|vendor/odm)/bin/emulator-cli  u:object_r:vcpuemulator_exec:s0

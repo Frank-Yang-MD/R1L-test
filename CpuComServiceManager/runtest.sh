@@ -1,0 +1,1 @@
+./gradlew clean sonarqube -Dsonar.projectVersion=${BUILD_NUMBER}

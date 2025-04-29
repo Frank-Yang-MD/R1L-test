@@ -1,0 +1,123 @@
+// COPYRIGHT (C) 2018 MITSUBISHI ELECTRIC CORPORATION
+// ALL RIGHTS RESERVED
+
+cc_defaults {
+    name: "libcpucom-defaults",
+    product_specific: true,
+    vendor_available: true,
+    host_supported: true,
+
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+
+    shared_libs: [
+        "libmelcocommon",
+        "liblogdogcommon",
+        "libcpucominternal",
+    ],
+
+    export_shared_lib_headers: [
+        "libcpucominternal",
+    ],
+
+    srcs : [
+        "src/libCpuCom.cpp",
+        "src/common/IoDevice.cpp",
+        "src/message/CpuComMessenger.cpp",
+    ],
+
+    export_include_dirs: ["include"],
+}
+
+cc_library_shared {
+    name: "libcpucom",
+    defaults: ["libcpucom-defaults"],
+
+    srcs : [
+        "src/CpuComImpl.cpp",
+    ],
+}
+
+cc_library_shared {
+    name: "libcpucomv2",
+    defaults: ["libcpucom-defaults"],
+
+    srcs : [
+        "src/CpuComImpl_v2.cpp",
+    ],
+}
+
+
+cc_defaults {
+    name: "libcpucom-tests-defaults",
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+
+    static_libs: [
+        "libgtest",
+        "libgmock",
+    ],
+
+    shared_libs: [
+        "libmelcocommon",
+        "liblogdogcommon",
+        "libcpucominternal",
+    ],
+
+    local_include_dirs: [
+        "include",
+        "src",
+    ],
+
+    srcs: [
+        "src/**/*.cpp",
+        "test/**/*.cpp",
+    ],
+
+    exclude_srcs: [
+        "src/CpuComImpl.cpp",
+    ],
+}
+
+cc_test_host {
+    name: "libcpucom-tests",
+    defaults: ["libcpucom-tests-defaults"],
+}
+
+cc_test_host {
+    name: "libcpucom-tests-coverage",
+    defaults: ["libcpucom-tests-defaults"],
+    cflags: ["-fprofile-arcs", "-ftest-coverage", "-g", "-O0"],
+    ldflags: ["-coverage"],
+    static_libs: ["libprofile_rt"],
+}
+
+cc_binary_host {
+    name: "libcpucom_csv_generator",
+
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-fexceptions",
+    ],
+
+    shared_libs: [
+        "liblogdogcommon",
+    ],
+
+    local_include_dirs: [
+        "src",
+        "include",
+    ],
+
+    srcs: [
+        "tools/libCpuComCsvGenerator/libcpucom_csv_generator.cpp",
+        "src/libCpuCom.cpp",
+    ],
+}
+

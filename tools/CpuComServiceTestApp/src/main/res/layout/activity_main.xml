@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.9"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonStartESM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Bind ExtSrvManager" />
+
+                <Button
+                    android:id="@+id/buttonStartCPU"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Get CpuComService binder" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.9"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CMD:0x"/>
+                <EditText
+                    android:id="@+id/cmdText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="cmd"
+                    android:ems="10"
+                    android:singleLine="true"
+                    android:textIsSelectable="true"
+                    android:text="11"
+                    android:maxLength="8"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SUBCMD:0x"/>
+                <EditText
+                    android:id="@+id/subCmdText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="subCmd"
+                    android:ems="10"
+                    android:singleLine="true"
+                    android:textIsSelectable="true"
+                    android:text="80"
+                    android:maxLength="8"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DATA:0x"/>
+                <EditText
+                    android:id="@+id/dataText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:contentDescription="data"
+                    android:singleLine="true"
+                    android:textIsSelectable="true"
+                    android:ems="10" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.9"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonSendCmd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="SendCmd" />
+
+                <Button
+                    android:id="@+id/buttonSubscribeCB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="SubscribeCB" />
+
+                <Button
+                    android:id="@+id/buttonUnsubscribeCB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="UnsubscribeCB" />
+
+                <Button
+                    android:id="@+id/buttonSubscribeErrorCB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="SubscribeErrorCB" />
+
+                <Button
+                    android:id="@+id/buttonUnsubscribeErrorCB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="UnsubscribeErrorCB" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:orientation="horizontal">
+
+                <com.mitsubishielectric.ahu.efw.cpucomservice.testapp.CustomizedKeyboard
+                    android:id="@+id/keyboard"
+                    android:layout_width="match_parent"
+                    android:layout_height="278dp"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.3"
+                        android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/logText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:maxLines="13"
+                            android:inputType="textMultiLine"
+                            android:textIsSelectable="false"
+                            android:focusable="false"/>
+                    </LinearLayout>
+
+                </com.mitsubishielectric.ahu.efw.cpucomservice.testapp.CustomizedKeyboard>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</RelativeLayout>

@@ -1,0 +1,15 @@
+# COPYRIGHT (C) 2018 MITSUBISHI ELECTRIC CORPORATION
+# ALL RIGHTS RESERVED
+
+service vendor.cpucomdaemon /odm/bin/cpucomdaemon
+    class main
+    user vendor_cpucom
+    group vendor_cpucom vendor_vpd
+    priority -10
+    socket cpucom stream 0660 vendor_cpucom vendor_cpucom
+    disabled
+
+on property:vendor.cpucomdaemon=start
+#    setprop vendor.vcpuemulator 1
+#    start vcpuemulator
+    start vendor.cpucomdaemon

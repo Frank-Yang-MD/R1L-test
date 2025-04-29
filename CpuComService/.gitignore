@@ -1,0 +1,11 @@
+.externalNativeBuild/
+/.gradle
+/local.properties
+/.idea
+/gen
+/build
+/captures
+*.iml
+*.apk
+proguard-rules.pro
+**/settings.gradle

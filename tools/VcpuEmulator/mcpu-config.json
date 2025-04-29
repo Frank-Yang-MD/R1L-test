@@ -1,0 +1,41 @@
+{
+    "default-action" : { "type": "resend" },
+    "rules" : [
+        {
+            "type" : "receive",
+            "command" : "95,01",
+            "actions" :
+            [
+                {
+                    "type": "send",
+                    "command": "95,81",
+                    "data": "00"
+                },
+                {
+                    "type": "print",
+                    "format": "V->M: [%02x,%02x] [%s]"
+                },
+                {
+                    "type": "send",
+                    "command": "95,81",
+                    "data": "01"
+                },
+                {
+                    "type": "print",
+                    "format": "V->M: [%02x,%02x] [%s]"
+                }
+            ]
+        },
+        {
+            "type" : "receive",
+            "command" : "..,..",
+            "actions" :
+            [
+                {
+                    "type": "print",
+                    "format": "V->M: [%02x,%02x] [%s]"
+                }
+            ]
+        }
+    ]
+}

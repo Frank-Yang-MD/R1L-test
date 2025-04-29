@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<permissions>
+    <library name="com.mitsubishielectric.ahu.efw.lib.cpucomservice" file="/system/framework/com.mitsubishielectric.ahu.efw.lib.cpucomservice.jar"/>
+</permissions>

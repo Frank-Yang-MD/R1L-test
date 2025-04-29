@@ -1,0 +1,46 @@
+// COPYRIGHT (C) 2018 MITSUBISHI ELECTRIC CORPORATION
+// ALL RIGHTS RESERVED
+
+SERVICE_NAME = "CpuComService"
+PERM_NAME = "privapp-permissions-" + SERVICE_NAME
+
+android_app {
+    name: SERVICE_NAME,
+    product_specific: true,
+
+    libs: [
+        "com.mitsubishielectric.ahu.efw.lib.cpucomservice",
+        "com.mitsubishielectric.ahu.efw.lib.extendedservicemanager",
+        "com.mitsubishielectric.ahu.efw.lib.common",
+        "com.mitsubishielectric.ahu.efw.lib.logdogcommonclasslib",
+        "com.mitsubishielectric.ahu.efw.lib.vehiclepwrmgr",
+    ],
+
+    required: [
+        "com.mitsubishielectric.ahu.efw.lib.cpucomservice",
+        "com.mitsubishielectric.ahu.efw.lib.extendedservicemanager",
+        "com.mitsubishielectric.ahu.efw.lib.common",
+        "com.mitsubishielectric.ahu.efw.lib.logdogcommonclasslib",
+        "com.mitsubishielectric.ahu.efw.lib.vehiclepwrmgr",
+        PERM_NAME,
+    ],
+
+    jni_libs: ["libcpu_com_service_jni"],
+
+    srcs: ["src/**/*.java"],
+
+    optimize: {
+        enabled: false,
+    },
+
+    certificate: "platform",
+    privileged: true,
+}
+
+prebuilt_etc {
+    name: PERM_NAME,
+    product_specific: true,
+    src: "permissions/" + PERM_NAME + ".xml",
+    sub_dir: "permissions",
+    filename_from_src: true,
+}

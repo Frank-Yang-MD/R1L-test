@@ -1,0 +1,24 @@
+// COPYRIGHT (C) 2018 MITSUBISHI ELECTRIC CORPORATION
+// ALL RIGHTS RESERVED
+
+cc_binary {
+    name: "cpucomdaemonclient",
+    device_specific: true,
+
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+
+    shared_libs: [
+        "liblogdogcommon",
+        "libmelcocommon",
+        "libcpucom",
+        "libcpucominternal",
+    ],
+
+    srcs: [
+        "main.cpp",
+        "TestNative.cpp",
+    ],
+}

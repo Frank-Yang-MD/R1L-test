@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<permissions>
+    <permission name="com.mitsubishielectric.ahu.efw.cpucomservice.permission.ACCESS_MELCO_DAEMON"
+                protectionLevel="signature">
+        <group gid="vendor_cpucom" />
+    </permission>
+</permissions>

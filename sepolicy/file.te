@@ -1,0 +1,6 @@
+# COPYRIGHT (C) 2018 MITSUBISHI ELECTRIC CORPORATION
+# ALL RIGHTS RESERVED
+
+type cpucomdaemon_socket, file_type;
+type cpucomdaemon_device, file_type;
+type cpucomservice_app_data, file_type;

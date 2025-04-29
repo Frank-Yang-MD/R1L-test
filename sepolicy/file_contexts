@@ -1,0 +1,6 @@
+# COPYRIGHT (C) 2018 MITSUBISHI ELECTRIC CORPORATION
+# ALL RIGHTS RESERVED
+
+/dev/socket/cpucom                      u:object_r:cpucomdaemon_socket:s0
+/(odm|vendor/odm)/bin/cpucomdaemon      u:object_r:cpucomdaemon_exec:s0
+/dev/ttyHS[46]                          u:object_r:cpucomdaemon_device:s0

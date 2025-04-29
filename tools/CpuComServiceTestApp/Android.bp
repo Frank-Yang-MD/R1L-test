@@ -1,0 +1,31 @@
+// COPYRIGHT (C) 2020 MITSUBISHI ELECTRIC CORPORATION
+// ALL RIGHTS RESERVED
+
+android_app {
+    name: "CpuComServiceTestApp",
+    product_specific: true,
+
+    static_libs: [
+        "android-support-annotations",
+        "android-support-v4",
+        "android-support-v7-appcompat",
+        "android-support-v7-recyclerview",
+        "android-support-design",
+        "android-support-constraint-layout",
+    ],
+
+    libs: [
+        "com.mitsubishielectric.ahu.efw.lib.common",
+        "com.mitsubishielectric.ahu.efw.lib.cpucomservice",
+        "com.mitsubishielectric.ahu.efw.lib.extendedservicemanager",
+    ],
+
+    srcs: ["src/main/**/*.java"],
+    resource_dirs: ["src/main/res"],
+
+    manifest: "src/main/AndroidManifest.xml",
+
+    optimize: {
+        enabled: false,
+    },
+}

@@ -1,0 +1,39 @@
+// COPYRIGHT (C) 2020 MITSUBISHI ELECTRIC CORPORATION
+// ALL RIGHTS RESERVED
+
+LIB_NAME = "com.mitsubishielectric.ahu.efw.lib.cpucomservice"
+PERM_NAME = LIB_NAME + "-perm"
+
+java_library {
+    name: LIB_NAME,
+//    product_specific:true,
+    installable: true,
+
+    libs: [
+        "com.mitsubishielectric.ahu.efw.lib.common",
+        "com.mitsubishielectric.ahu.efw.lib.logdogcommonclasslib",
+    ],
+
+    required: [
+        PERM_NAME,
+        "com.mitsubishielectric.ahu.efw.lib.common",
+        "com.mitsubishielectric.ahu.efw.lib.logdogcommonclasslib",
+    ],
+
+    srcs: [
+        "src/**/*.java",
+        "src/**/I*.aidl",
+    ],
+
+    aidl: {
+        local_include_dirs: ["src/aidl"],
+    },
+}
+
+prebuilt_etc {
+    name: PERM_NAME,
+//    product_specific: true,
+    src: "permissions/" + LIB_NAME + ".xml",
+    sub_dir: "permissions",
+    filename_from_src: true,
+}

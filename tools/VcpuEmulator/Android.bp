@@ -1,0 +1,65 @@
+// COPYRIGHT (C) 2020 MITSUBISHI ELECTRIC CORPORATION
+// ALL RIGHTS RESERVED
+
+cc_binary {
+    name: "vcpuemulator",
+    device_specific: true,
+    init_rc: ["vcpuemulator.rc"],
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+    static_libs: ["libjsoncpp"],
+    shared_libs: [
+        "libcpucominternal",
+        "libmelcocommon",
+        "libmelcocommonnet",
+        "libcutils",
+        "liblogdogcommon",
+    ],
+
+    header_libs: [
+        "cpucomdaemon_headers",
+    ],
+
+    srcs: [
+        "src/main.cpp",
+        "src/Emulator.cpp",
+        "src/Rule.cpp",
+        "src/Rules.cpp",
+        "src/Events.cpp",
+        "src/Actions.cpp",
+        "src/RulesBuilder.cpp",
+        "src/Utils.cpp",
+        ":cpucomdaemon_protocol_srcs",
+    ],
+
+}
+
+cc_binary {
+    name: "emulator-cli",
+    device_specific: true,
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+    shared_libs: [
+        "libmelcocommon",
+        "liblogdogcommon",
+    ],
+    srcs: ["src/cli.cpp"],
+}
+
+prebuilt_etc {
+    name: "emulator-vcpu.config",
+    device_specific: true,
+
+    src: "vcpu-config.json",
+}
+
+prebuilt_etc {
+    name: "emulator-mcpu.config",
+    device_specific: true,
+
+    src: "mcpu-config.json",
+}

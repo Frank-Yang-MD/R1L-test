@@ -1,0 +1,65 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mitsubishielectric.ahu.efw.cpucomstabilitytestservice"
+    android:sharedUserId="android.uid.system">
+    <uses-permission android:name="com.mitsubishielectric.ahu.efw.common.permission.ACCESS_MELCO_EFW"/>
+    <application
+        android:allowBackup="false" >
+        <service
+            android:exported="true"
+            android:name="com.mitsubishielectric.ahu.efw.cpucomstabilitytestservice.CpuComStabilityTestService"
+            android:label="CpuComStabilityTestService">
+            <intent-filter>
+                <action android:name="com.mitsubishielectric.ahu.efw.cpucomstabilitytestservice.action.CPU_COM_STABILITY_TEST_SERVICE"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:exported="true"
+            android:process=":sendrecv1"
+            android:name="com.mitsubishielectric.ahu.efw.cpucomstabilitytestservice.SendReceiveTest"
+            android:label="SendReceiveTest">
+            <intent-filter>
+                <action android:name="com.mitsubishielectric.ahu.efw.cpucomstabilitytestservice.action.SEND_RECEIVE_TEST"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:exported="true"
+            android:process=":subsend1"
+            android:name="com.mitsubishielectric.ahu.efw.cpucomstabilitytestservice.SubscribeSendTest0"
+            android:label="SubscribeSendTest0">
+            <intent-filter>
+                <action android:name="com.mitsubishielectric.ahu.efw.cpucomstabilitytestservice.action.SUBSCRIBE_SEND_TEST0"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:exported="true"
+            android:process=":subsend2"
+            android:name="com.mitsubishielectric.ahu.efw.cpucomstabilitytestservice.SubscribeSendTest1"
+            android:label="SubscribeSendTest1">
+            <intent-filter>
+                <action android:name="com.mitsubishielectric.ahu.efw.cpucomstabilitytestservice.action.SUBSCRIBE_SEND_TEST1"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:exported="true"
+            android:process=":subsend3"
+            android:name="com.mitsubishielectric.ahu.efw.cpucomstabilitytestservice.SubscribeSendTest2"
+            android:label="SubscribeSendTest2">
+            <intent-filter>
+                <action android:name="com.mitsubishielectric.ahu.efw.cpucomstabilitytestservice.action.SUBSCRIBE_SEND_TEST2"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </service>
+
+        <uses-library android:name="com.mitsubishielectric.ahu.efw.lib.common" />
+        <uses-library android:name="com.mitsubishielectric.ahu.efw.lib.cpucomservice" />
+        <uses-library android:name="com.mitsubishielectric.ahu.efw.lib.extendedservicemanager"/>
+    </application>
+</manifest>

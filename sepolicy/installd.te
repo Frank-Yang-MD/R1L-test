@@ -1,0 +1,4 @@
+# COPYRIGHT (C) 2018 MITSUBISHI ELECTRIC CORPORATION
+# ALL RIGHTS RESERVED
+
+allow installd cpucomservice_app_data:dir { getattr open read relabelto setattr write rmdir search remove_name };

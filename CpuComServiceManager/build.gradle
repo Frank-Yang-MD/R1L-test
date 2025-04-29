@@ -1,0 +1,88 @@
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.0'
+    }
+}
+
+plugins {
+    id 'org.sonarqube' version '3.0'
+    id 'jacoco'
+}
+
+apply plugin: 'com.android.library'
+apply from: 'jacoco.gradle'
+apply from: 'sonarqube.gradle'
+
+android.signingConfigs['debug'].storeFile = file('../../Features/melco_debug.keystore')
+apply from:('../../Features/sdk_config.gradle')
+apply from:('../../Features/version_config.gradle')
+
+android {
+    compileSdkVersion unifiedSdkVersion
+    buildToolsVersion unifiedBuildToolsVersion
+
+    defaultConfig {
+        minSdkVersion unifiedSdkVersion
+        targetSdkVersion unifiedSdkVersion
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+        unitTests.all {
+            jvmArgs "-Djava.library.path=../../../../../out/host/linux-x86/lib64"
+        }
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src/java']
+            aidl.srcDirs = ['src/aidl']
+        }
+
+        test {
+            java.srcDirs = ['test']
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: [
+        'com.mitsubishielectric.ahu.efw.lib.common_intermediates/classes.jar',
+        'com.mitsubishielectric.ahu.efw.lib.extendedservicemanager_intermediates/classes.jar',
+        'com.mitsubishielectric.ahu.efw.lib.vehiclepwrmgr_intermediates/classes.jar',
+        'com.mitsubishielectric.ahu.efw.lib.cpucomservice_intermediates/classes.jar',
+        'com.mitsubishielectric.ahu.efw.lib.logdogcommonclasslib_intermediates/classes.jar',
+        'com.mitsubishielectric.ahu.efw.lib.logdogcyclicclasslib_intermediates/classes.jar',
+        'com.mitsubishielectric.ahu.efw.lib.logdogserialclasslib_intermediates/classes.jar',
+        'com.mitsubishielectric.ahu.efw.lib.logdogservice_intermediates/classes.jar'],
+        dir: '../../../../../out/target/common/obj/JAVA_LIBRARIES')
+
+        // Mockito
+        testImplementation 'org.mockito:mockito-core:3.7.7'
+        androidTestImplementation 'org.mockito:mockito-core:3.7.7'
+
+        // PowerMock
+        testImplementation 'org.powermock:powermock-core:2.0.9'
+        testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
+        // mockito2 is completely compatible with mockito3, so we can use
+        // powermock-api-mockito2 even with mockito3
+        testImplementation 'org.powermock:powermock-api-mockito2:2.0.9'
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        google()
+    }
+}

@@ -1,0 +1,31 @@
+// COPYRIGHT (C) 2020 MITSUBISHI ELECTRIC CORPORATION
+// ALL RIGHTS RESERVED
+
+android_app {
+    name: "CpuComStabilityTestService",
+    product_specific: true,
+
+    libs: [
+        "com.mitsubishielectric.ahu.efw.lib.extendedservicemanager",
+        "com.mitsubishielectric.ahu.efw.lib.common",
+        "com.mitsubishielectric.ahu.efw.lib.cpucomservice",
+    ],
+
+    srcs: [
+        "src/**/*.java",
+    ],
+
+    optimize: {
+        enabled: false,
+    },
+
+    certificate: "platform",
+    privileged: true,
+}
+
+cc_prebuilt_binary {
+    name: "stabilitytest.sh",
+    product_specific: true,
+
+    srcs: ["stabilitytest.sh"],
+}

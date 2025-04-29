@@ -1,0 +1,7 @@
+CmndLine mod examples:
+
+subscribe 11,80
+unsubscribe 11,80
+subscribelist 11,80 1f,1c 3e,a1
+send 1b,3f 23,55,2c
+exit

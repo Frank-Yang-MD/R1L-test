@@ -1,0 +1,15 @@
+sonarqube {
+    properties {
+        property 'sonar.projectKey', 'CpuComServiceManager'
+        property 'sonar.projectName', 'CpuComServiceManager'
+        property 'sonar.host.url', 'https://sonar.mea-dev.net/'
+        property 'sonar.branch.name', 'q-r1lr'
+        property 'sonar.login', ''
+        property 'sonar.coverage.jacoco.xmlReportPaths', './build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml'
+        property 'sonar.junit.reportPaths', './build/test-results/testDebugUnitTest'
+        property 'sonar.buildbreaker.skip', 'False'
+        property 'sonar.coverage.exclusions', '/src/java/com/mitsubishielectric/ahu/efw/lib/cpucomservice/CpuComServiceLibLog.java'
+    }
+}
+
+project.tasks['sonarqube'].dependsOn 'jacocoTestReport'

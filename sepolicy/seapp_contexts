@@ -1,0 +1,4 @@
+# COPYRIGHT (C) 2018 MITSUBISHI ELECTRIC CORPORATION
+# ALL RIGHTS RESERVED
+
+user=_app domain=cpucomservice_app seinfo=platform name=com.mitsubishielectric.ahu.efw.cpucomservice type=cpucomservice_app_data

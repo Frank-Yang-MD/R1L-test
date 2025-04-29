@@ -1,0 +1,13 @@
+# COPYRIGHT (C) 2018 MITSUBISHI ELECTRIC CORPORATION
+# ALL RIGHTS RESERVED
+
+type cpucomdaemon, domain, melco_daemon;
+type cpucomdaemon_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(cpucomdaemon);
+
+allow cpucomdaemon cpucomdaemon_device:chr_file rw_file_perms;
+
+unix_socket_connect(cpucomdaemon, vehiclepowerdaemon, vehiclepowerdaemon)
+
+set_prop(cpucomdaemon, cpucomdaemon_prop)

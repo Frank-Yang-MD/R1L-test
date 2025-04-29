@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+android.signingConfigs['debug'].storeFile = file('../../../Features/meaa_debug.keystore')
+
+apply from: ('../../../Features/sdk_config.gradle')
+apply from: ('../../../Features/version_config.gradle')
+
+android {
+    signingConfigs {
+        config {
+            keyPassword 'android'
+            storeFile android.signingConfigs['debug'].storeFile
+            storePassword 'android'
+        }
+    }
+    compileSdkVersion unifiedSdkVersion
+    buildToolsVersion unifiedBuildToolsVersion
+
+    defaultConfig {
+        applicationId "com.mitsubishielectric.ahu.efw.cpucomservice.cpucomservicetestapp.CpuComServiceTestAppShell"
+        minSdkVersion unifiedSdkVersion
+        targetSdkVersion unifiedSdkVersion
+        versionCode 1
+        versionName "1.0"
+        signingConfig signingConfigs.config
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.config
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+
+    implementation fileTree(include: [
+            'com.mitsubishielectric.ahu.efw.lib.extendedservicemanager_intermediates/classes.jar',
+            'com.mitsubishielectric.ahu.efw.lib.common_intermediates/classes.jar',
+            'com.mitsubishielectric.ahu.efw.lib.cpucomservice_intermediates/classes.jar',
+    ],
+            dir: '../../../../../../out/target/common/obj/JAVA_LIBRARIES')
+
+}
+
+buildscript {
+
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.0'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}

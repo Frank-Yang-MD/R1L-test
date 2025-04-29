@@ -1,0 +1,14 @@
+# COPYRIGHT (C) 2018 MITSUBISHI ELECTRIC CORPORATION
+# ALL RIGHTS RESERVED
+
+type cpucomservice_app, domain, melco_service;
+app_domain(cpucomservice_app)
+
+unix_socket_connect(cpucomservice_app, cpucomdaemon, cpucomdaemon)
+
+allow cpucomservice_app activity_service:service_manager find;
+allow cpucomservice_app connectivity_service:service_manager find;
+allow cpucomservice_app display_service:service_manager find;
+allow cpucomservice_app network_management_service:service_manager find;
+allow cpucomservice_app cpucomservice_app_data:dir { getattr search };
+allow cpucomservice_app vendor_file:file rx_file_perms;

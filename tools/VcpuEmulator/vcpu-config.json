@@ -1,0 +1,16 @@
+{
+    "default-action" : { "type": "resend" },
+    "rules" : [
+        {
+            "type" : "receive",
+            "command" : "..,..",
+            "actions" :
+            [
+                {
+                    "type": "print",
+                    "format": "M->V: [%02x,%02x] [%s]"
+                }
+            ],
+        }
+    ]
+}

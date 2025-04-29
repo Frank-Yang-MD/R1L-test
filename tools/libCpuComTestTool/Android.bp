@@ -1,0 +1,29 @@
+// COPYRIGHT (C) 2019 MITSUBISHI ELECTRIC CORPORATION
+// ALL RIGHTS RESERVED
+
+cc_binary {
+    name: "libcpucomtesttool",
+    device_specific: true,
+    compile_multilib: "both",
+    multilib: {
+        lib32: {
+            suffix: "32",
+        },
+        lib64: {
+            suffix: "64",
+        },
+    },
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+
+    shared_libs: [
+        "libmelcocommon",
+        "libcpucomv2",
+    ],
+
+    srcs: [
+        "main.cpp",
+    ],
+}

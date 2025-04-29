@@ -1,0 +1,10 @@
+# COPYRIGHT (C) 2018 MITSUBISHI ELECTRIC CORPORATION
+# ALL RIGHTS RESERVED
+
+service vcpuemulator /odm/bin/vcpuemulator
+    class main
+    user vendor_cpucom
+    group vendor_cpucom
+    socket emulator stream 0660 vendor_cpucom system
+    socket emulatorcli stream 0660 vendor_cpucom system
+    disabled

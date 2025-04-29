@@ -1,0 +1,2 @@
+type vcpuemulator_socket, file_type;
+type emulatorcli_socket, file_type;
